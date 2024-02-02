@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo 4.2</title>
+</head>
+<body>
+    <h1>Todo</h1>
+    <div class="TodoEntry">
+            <input onclick="" placeholder="Enter Tilte " id="Title"> <br><br>
+            <textarea onclick="" placeholder="Enter Todo" id="Todo"></textarea><br><br>
+            <button onclick="TodoHandler()">Add Todo</button>
+    </div>
+    <div id="container"></div>
+<script>
+    let globalId = 1;
+    function TodoHandler(){
+        let Title = document.getElementById('Title').value
+        let Todo = document.getElementById('Todo').value
+        let container= document.getElementById('container')
+        
+        container.appendChild(devCration(Title,Todo,globalId++))
+    }
+    function devCration(Title,Todo,id){
+        
+        //crating Dynamic elements 
+        let container = document.createElement('div')
+        let div1 = document.createElement('div')
+        div1.innerHTML=`<h1>${Title}</h1>`
+        let div2 = document.createElement('div')
+        div2.innerHTML=Todo
+        let button1 = document.createElement('button')
+        button1.setAttribute("onclick",`markasDone(${id})`)
+        button1.innerHTML="Mark as Done"
+        
+        
+        container.appendChild(div1)
+        container.appendChild(div2)
+        container.appendChild(button1)
+        container.setAttribute("id",id)
+        return container;
+    }
+
+    function markasDone(id){
+        let devContainer = document.getElementById(`${id}`)
+        devContainer.children[2].innerHTML="Done!"
+    }
+</script>
+</body>
+</html>

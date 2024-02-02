@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Example</title>
+</head>
+<body>
+    <div>
+        <input type="number" placeholder="Enter First Number" id="fistnum"> <br> <input type="number" placeholder="Enter Secound Number" id ="secnum"> <br>
+        <button >Calculate the Sum</button>
+    </div>
+    <p id = "ans"></p>
+</body>
+<script>
+    
+    let btn = document.querySelector('button');
+    btn.addEventListener('click',function(){let firstNum = document.getElementById('fistnum').value;
+    let secNum = document.getElementById("secnum").value
+        
+        let sum = parseInt(firstNum) + parseInt(secNum);
+        document.getElementById('ans').style.color = "#00FF00";
+        document.getElementById('ans').innerHTML = sum;
+    })
+</script>
+</html>

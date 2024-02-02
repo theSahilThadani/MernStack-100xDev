@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debouncing Example</title>
+</head>
+<body>
+    <div>
+        <input oninput="debouncing()" type="number" placeholder="Enter First Number" id="firstnum"> <br>
+        <input oninput="debouncing()" type="number" placeholder="Enter Second Number" id="secondnum"> <br>
+    </div>
+    <p id="ans"></p>
+    <br>
+
+    <p>For Counting Intrest Rate</p>
+    <div>
+        <input onchange="IntestCALULATOR()" type="number" placeholder="Enter Amount" id="amt"> <br>
+        <input onchange="IntestCALULATOR()" type="number" placeholder="Enter Years" id="years"> <br>
+        <input onchange="IntestCALULATOR()" type="number" placeholder="Enter Inrest Rate" id="intrest"><br>
+    </div>
+    <p id="TotalAmount"></p>
+    <p id="TotalInrest"></p>
+
+    <script>
+        let timeoutId;
+        async function IntestCALULATOR() {
+            try {
+                let amount = document.getElementById('amt').value;
+                let years = document.getElementById('years').value;
+                let interest = document.getElementById('interest').value;
+        
+                const response = await fetch(`http://localhost:8000/CIC?amount=${amount}&years=${years}&interest=${interest}`);
+        
+                if (response.ok) {
+                    const result = await response.json();
+                    document.getElementById('TotalAmount').innerHTML = result.totalAmount;
+                    document.getElementById('TotalInterest').innerHTML = result.interestAmount;
+                } else {
+                    console.error('Error:', response.status, response.statusText);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+        
+        function sumans() {
+            let firstNum = document.getElementById('firstnum').value;
+            let secNum = document.getElementById('secondnum').value;
+
+            fetch(`http://localhost:8000/sum?a=${firstNum}&b=${secNum}`)
+                .then(response => response.text())
+                .then(ans => {
+                    document.getElementById('ans').style.color = "#00FF00";
+                    document.getElementById('ans').innerHTML = ans;
+                });
+        }
+
+        function debouncing() {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(sumans, 500);
+        }
+    </script>
+</body>
+</html>
