@@ -3,13 +3,13 @@ import axios from 'axios'
 
 
 function Todos({todos}) {
-    console.log(todos)
+    
     const handleClick = (id) => {
             const data ={
                 id:id
             }
         axios.post('http://localhost:3000/completed',data)
-        window.location.reload()
+        
         .then(response => {
             // Handle success
             console.log('Response:', response.data);
@@ -25,7 +25,7 @@ function Todos({todos}) {
         id:id
       }
       axios.post('http://localhost:3000/delete',data)
-      window.location.reload()
+      
       .then(response => {
         // Handle success
         console.log('Response:', response.data);

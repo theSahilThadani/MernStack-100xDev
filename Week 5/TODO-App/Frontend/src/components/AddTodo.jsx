@@ -23,7 +23,7 @@ function AddTodo() {
             description:description
         }
         await axios.post('http://localhost:3000/todo',data)
-        window.location.reload()
+        // window.location.reload()
         .then(response => {
             // Handle success
             console.log('Response:', response.data);
