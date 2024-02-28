@@ -5,6 +5,7 @@ const router = Router();
 const z = require('zod');
 const JWT_KEY = "ThorIsHero";
 const jwt = require('jsonwebtoken')
+
 const adminSignupSchema = z.object({
     username: z.string().min(3),
     password: z.string().min(6),

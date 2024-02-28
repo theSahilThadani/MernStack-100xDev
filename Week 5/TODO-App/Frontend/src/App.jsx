@@ -14,6 +14,7 @@ function App() {
                 setTodos(response.data.todos);
             } catch (error) {
                 console.error('Error fetching todos:', error);
+                
             }
         };
         TodosFetch()
