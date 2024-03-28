@@ -8,3 +8,4 @@ const config: Readonly<configs> = {
 }
 // config.apiKey = 'newkey';
 // config.apiKey = 'newkey'; // Error: Cannot assign to 'apiKey' because it is a read-only property.
+//
